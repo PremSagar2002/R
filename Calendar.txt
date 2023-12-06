@@ -1,0 +1,168 @@
+Calendar.js
+import React, { useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./Calendar.css";
+function Calendar () {
+  const allMonthValues = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  const [selectedDate, setSelectedDate] = useState();
+  const [calendarText, setCalendarText] = useState(`No Date is selected`);
+  const handleDateChange = (value) => {
+    setSelectedDate(value);
+    setCalendarText(`The selected Date is ${value.toDateString()}`);
+  };
+  const handleYearChange = (value) => {
+    const yearValue = value.getFullYear();
+    setCalendarText(`${yearValue} Year  is selected`);
+  };
+  const handleMonthChange = (value) => {
+    const monthValue = allMonthValues[value.getMonth()];
+    setCalendarText(`${monthValue} Month  is selected`);
+  };
+  return (
+    <div className="app1">
+      <h2 className="calander-details">{calendarText}</h2>
+      <Calendar
+        onClickMonth={handleMonthChange}
+        onClickYear={handleYearChange}
+        onChange={handleDateChange}
+        value={selectedDate}
+      />
+    </div>
+  );
+}
+export default Calendar;
+
+Calendar.css
+.app1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    color:black;
+    font-family:Georgia, Times, "Times New Roman", serif;
+  }
+
+Index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
+import Calendar from './Calender/App7';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+     <Calendar/>
+  </React.StrictMode>
+);
+reportWebVitals();
+
+Output :
+
+ 
+ 
+12.Create a react router application by using React Router utilities
+Source Code :
+
+Router1.js
+import "./Router1.css";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from "react-router-dom";
+import Home from "./Comp/Home";
+import About from "./Comp/About";
+import ContactUs from "./Comp/ContactUs";
+
+function Router1() {
+    return (
+        <>
+            <Router>
+                <Routes>
+                    <Route
+                        exact
+                        path="/"
+                        element={<Home />}
+                    />
+                    <Route
+                        path="/about"
+                        element={<About />}
+                    />
+                    <Route
+                        path="/contactus"
+                        element={<ContactUs />}
+                    /> 
+                    <Route
+                        path="*"
+                        element={<Navigate to="/" />}
+                    />
+                </Routes>
+            </Router>
+        </>
+    );
+}
+export default Router1;
+
+Router1.css
+.App {
+  text-align: center;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo infinite 20s linear;
+  }
+}
+.App-header {
+  background-color: #060c01;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #61dafb;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+Index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import Router1 from './Router1';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Router/>
+  </React.StrictMode>
+);
+reportWebVitals(); 
